@@ -8,10 +8,7 @@ Template.body.events({
     'submit .add-pizza': function(event, template) {
         event.preventDefault();
         var text = event.target.flavor.value;
-        Pizzas.insert({
-            flavor: text,
-            votes: 0
-        });
+        Meteor.call('addPizza', text);
         event.target.flavor.value = '';
     }
 });
@@ -19,11 +16,11 @@ Template.body.events({
 Template.pizza.events({
     'click .yep': function(event, template) {
         event.preventDefault();
-        Pizzas.update({_id: this._id}, { $inc: {votes: 1}});
+        Meteor.call('increaseVote', this._id);
     },
 
     'click .nope': function(event, template) {
         event.preventDefault();
-        Pizzas.update({_id: this._id}, { $inc: {votes: -1}});
+        Meteor.call('decreaseVote', this._id);
     }
 });
