@@ -1,0 +1,16 @@
+<head>
+    <title>frontend-pizza</title>
+</head>
+<body>
+    <h1>frontend-pizza</h1>
+    <p>vote for your favorite pizza!</p>
+    <ul>
+        {{#each allPizzas}}
+            {{> pizza}}
+        {{/each}}
+    </ul>
+</body>
+
+<template name="pizza">
+    <li>{{flavor}}: {{votes}}</li>
+</template>
